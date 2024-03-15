@@ -1,0 +1,43 @@
+{
+  "name": "kill-electron",
+  "version": "0.1.1",
+  "description": "Terminate the Electron app process during development",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "goreleaser release --snapshot --clean && tsup",
+    "dev": "tsx src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kokororin/kill-electron.git"
+  },
+  "keywords": [
+    "electron"
+  ],
+  "author": "kokororin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kokororin/kill-electron/issues"
+  },
+  "homepage": "https://github.com/kokororin/kill-electron#readme",
+  "devDependencies": {
+    "@kokororin/prettierrc": "^0.1.1",
+    "@types/node": "^20.11.27",
+    "prettier": "^3.2.5",
+    "tsup": "^8.0.2",
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.2"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ]
+}
