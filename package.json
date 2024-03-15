@@ -1,6 +1,6 @@
 {
   "name": "kill-electron",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Terminate the Electron app process during development",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

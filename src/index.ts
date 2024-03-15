@@ -21,15 +21,11 @@ const knownUnixlikeBins: Record<string, string> = {
 };
 
 interface Options {
-  userModelId: string;
+  userModelId?: string;
   zombieOnly?: boolean;
 }
 
 export function killElectron(options?: Options) {
-  if (!options?.userModelId) {
-    throw new Error('userModelId is required');
-  }
-
   let binPath = '';
 
   if (platformKey in knownWindowsBins) {
@@ -42,7 +38,10 @@ export function killElectron(options?: Options) {
 
   binPath = path.join(binDir, binPath);
 
-  const args = ['--user-model-id', options.userModelId];
+  const args = [];
+  if (options?.userModelId) {
+    args.push('--user-model-id', options.userModelId);
+  }
   if (options?.zombieOnly) {
     args.push('--zombie-only');
   }
