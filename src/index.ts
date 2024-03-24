@@ -2,8 +2,6 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import os from 'node:os';
 
-const binDir = path.join(__dirname, '../bin');
-
 const platformKey = `${process.platform} ${os.arch()} ${os.endianness()}`;
 
 const knownWindowsBins: Record<string, string> = {
@@ -25,7 +23,7 @@ interface Options {
   zombieOnly?: boolean;
 }
 
-export function killElectron(options?: Options) {
+function getBinPath() {
   let binPath = '';
 
   if (platformKey in knownWindowsBins) {
@@ -35,8 +33,18 @@ export function killElectron(options?: Options) {
   } else {
     throw new Error(`Unsupported platform: ${platformKey}`);
   }
+  return binPath;
+}
 
+export function getExecutablePath() {
+  const binDir = path.join(__dirname, '../bin');
+  let binPath = getBinPath();
   binPath = path.join(binDir, binPath);
+  return binPath;
+}
+
+export function killElectron(options?: Options) {
+  const execPath = getExecutablePath();
 
   const args = [];
   if (options?.userModelId) {
@@ -46,7 +54,8 @@ export function killElectron(options?: Options) {
     args.push('--zombie-only');
   }
 
-  execFileSync(binPath, args, {
-    stdio: 'inherit'
+  execFileSync(execPath, args, {
+    stdio: 'inherit',
+    windowsHide: true
   });
 }

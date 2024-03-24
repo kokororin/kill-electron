@@ -2,6 +2,9 @@
   "name": "kill-electron",
   "version": "0.1.2",
   "description": "Terminate the Electron app process during development",
+  "bin": {
+    "kill-electron": "./dist/bin.js"
+  },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -13,7 +16,9 @@
   },
   "scripts": {
     "build": "goreleaser release --snapshot --clean && tsup",
-    "dev": "tsx src/index.ts"
+    "test": "vitest",
+    "dev:index": "tsx src/index.ts",
+    "dev:bin": "tsx src/bin.ts"
   },
   "repository": {
     "type": "git",
@@ -34,7 +39,8 @@
     "prettier": "^3.2.5",
     "tsup": "^8.0.2",
     "tsx": "^4.7.1",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.2",
+    "vitest": "^1.4.0"
   },
   "files": [
     "dist",
