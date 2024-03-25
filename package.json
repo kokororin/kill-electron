@@ -3,22 +3,24 @@
   "version": "0.1.3",
   "description": "Terminate the Electron app process during development",
   "bin": {
-    "kill-electron": "./dist/bin.js"
+    "kill-electron": "./bin/kill-electron"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     }
   },
   "scripts": {
-    "build": "goreleaser release --snapshot --clean && tsup",
-    "test": "vitest",
+    "build:go": "goreleaser release --snapshot --clean && rimraf -g dist-go/*.{json,yaml}",
+    "build": "nr build:go && tsup",
+    "test": "nr build:go && vitest run",
     "dev:index": "tsx src/index.ts",
-    "dev:bin": "tsx src/bin.ts"
+    "dev:bin": "tsx src/kill-electron.ts"
   },
   "repository": {
     "type": "git",
@@ -34,9 +36,11 @@
   },
   "homepage": "https://github.com/kokororin/kill-electron#readme",
   "devDependencies": {
+    "@antfu/ni": "^0.21.12",
     "@kokororin/prettierrc": "^0.1.1",
     "@types/node": "^20.11.27",
     "prettier": "^3.2.5",
+    "rimraf": "^5.0.5",
     "tsup": "^8.0.2",
     "tsx": "^4.7.1",
     "typescript": "^5.4.2",
@@ -44,6 +48,7 @@
   },
   "files": [
     "dist",
+    "dist-go",
     "bin"
   ]
 }

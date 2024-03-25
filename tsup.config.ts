@@ -1,9 +1,10 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['src/index.ts', 'src/bin.ts'],
+  entry: ['src/index.ts', 'src/kill-electron.ts'],
   outDir: 'dist',
   format: ['cjs', 'esm'],
   clean: true,
-  dts: true
+  dts: true,
+  shims: true
 });
