@@ -55,12 +55,8 @@ export function killElectron(options?: Options) {
     args.push('--zombie-only');
   }
 
-  try {
-    execFileSync(execPath, args, {
-      stdio: 'inherit',
-      windowsHide: true
-    });
-  } catch (err: any) {
-    throw new Error(`exec failed: ${err.stderr}`);
-  }
+  execFileSync(execPath, args, {
+    stdio: 'inherit',
+    windowsHide: true
+  });
 }
