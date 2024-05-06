@@ -20,7 +20,10 @@
     "build": "nr build:go && tsup",
     "test": "nr build:go && vitest run",
     "dev:index": "tsx src/index.ts",
-    "dev:bin": "tsx src/kill-electron.ts"
+    "dev:bin": "tsx src/kill-electron.ts",
+    "release:bump": "bumpp",
+    "release:publish": "pnpm publish",
+    "release:publish:dry-run": "pnpm publish --dry-run --no-git-checks"
   },
   "repository": {
     "type": "git",
@@ -39,6 +42,7 @@
     "@antfu/ni": "^0.21.12",
     "@kokororin/prettierrc": "^0.1.1",
     "@types/node": "^20.11.27",
+    "bumpp": "^9.4.1",
     "prettier": "^3.2.5",
     "shx": "^0.3.4",
     "tsup": "^8.0.2",
@@ -50,5 +54,6 @@
     "dist",
     "dist-go",
     "bin"
-  ]
+  ],
+  "packageManager": "pnpm@9.0.6"
 }
