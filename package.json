@@ -43,20 +43,20 @@
     "@kokororin/prettierrc": "^0.1.1",
     "@types/node": "^20.11.27",
     "bumpp": "^9.4.1",
-    "dirname-filename-esm": "^1.1.1",
+    "dirname-filename-esm": "^1.1.2",
     "fast-glob": "^3.3.2",
-    "prettier": "^3.2.5",
-    "tsup": "^8.0.2",
-    "tsx": "^4.7.1",
-    "typescript": "^5.4.2",
-    "vitest": "^1.4.0"
+    "prettier": "^3.3.2",
+    "tsup": "^8.1.0",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3",
+    "vitest": "^2.0.2"
   },
   "files": [
     "dist",
     "dist-go",
     "bin"
   ],
-  "packageManager": "pnpm@9.0.6",
+  "packageManager": "pnpm@9.5.0",
   "publishConfig": {
     "executableFiles": [
       "dist-go/kill-electron_darwin_amd64",
