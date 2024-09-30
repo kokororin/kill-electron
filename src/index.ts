@@ -25,7 +25,7 @@ interface Options {
   zombieOnly?: boolean;
 }
 
-function getBinPath() {
+function getBinPath(): string {
   let binPath = '';
 
   if (platformKey in knownWindowsBins) {
@@ -38,20 +38,20 @@ function getBinPath() {
   return binPath;
 }
 
-export function getExecutablePath() {
+export function getExecutablePath(): string {
   let binPath = getBinPath();
   binPath = path.join(binDir, binPath);
   return binPath;
 }
 
-export function killElectron(options?: Options) {
+export function killElectron(options?: Options): void {
   const execPath = getExecutablePath();
 
   const args = [];
-  if (options?.userModelId) {
+  if (options?.userModelId != null) {
     args.push('--user-model-id', options.userModelId);
   }
-  if (options?.zombieOnly) {
+  if (options?.zombieOnly === true) {
     args.push('--zombie-only');
   }
 

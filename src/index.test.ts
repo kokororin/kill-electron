@@ -2,19 +2,21 @@ import { assert, test } from 'vitest';
 import { killElectron } from '.';
 
 test('killElectron with no args', () => {
-  assert.throws(() => killElectron());
+  assert.throws(() => {
+    killElectron();
+  });
 });
 
 test('killElectron with userModelId', () => {
-  assert.doesNotThrow(() =>
+  assert.doesNotThrow(() => {
     killElectron({
       userModelId: 'my-user-model-id'
-    })
-  );
-  assert.doesNotThrow(() =>
+    });
+  });
+  assert.doesNotThrow(() => {
     killElectron({
       userModelId: 'my-user-model-id',
       zombieOnly: true
-    })
-  );
+    });
+  });
 });
